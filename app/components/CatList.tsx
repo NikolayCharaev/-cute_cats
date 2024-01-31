@@ -3,34 +3,26 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import heart from '@/public/heart.svg';
 import heartActive from '@/public/heart-active.svg';
-interface Cat {
-  breeds: any[];
-  categories: CatCategory[];
-  height: number;
-  id: string;
-  url: string;
-  width: number;
-  isLiked?: boolean;
-}
-
-interface CatCategory {
-  id: number;
-  name: string;
-}
+import loadingCat from  '@/public/loader.gif'
+import { Cat } from '@/types/cat';
 
 const CatList = () => {
   const [cats, setCats] = useState<Cat[]>([]);
+  const [likedCats, setLikedCats] = useState<Cat[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleLikeClick = (catId: string) => {
-   const likedCat =  cats.filter(elem => elem.id === catId)
-   window.localStorage.setItem('cats' , JSON.stringify(likedCat))
     setCats((prevCats) => {
       return prevCats.map((cat) => (cat.id === catId ? { ...cat, isLiked: true } : cat));
     });
-
   };
 
+  useEffect(() => {
+    window.localStorage.setItem('cats', JSON.stringify(likedCats));
+  }, [likedCats]);
+
   async function fetchCats() {
+    setLoading(true);
     try {
       //@ts-ignore
       const response = await fetch(process.env.NEXT_PUBLIC_CAT_URL, {
@@ -41,12 +33,16 @@ const CatList = () => {
 
       if (!response.ok) {
         throw new Error('Ошибка запроса к API');
+      } else {
+        setLoading(false);
       }
 
       const data: Cat[] = await response.json();
       setCats(data);
     } catch (error) {
       console.error('Произошла ошибка:', error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -54,10 +50,17 @@ const CatList = () => {
     fetchCats();
   }, []);
 
-  console.log(cats);
-
   return (
     <ul className="text-black flex flex-wrap w-full gap-[47px] mt-[52px]">
+      {loading && <div className='flex justify-center items-center w-screen h-screen'>
+        <Image
+            className="object-cover "
+            src={loadingCat}
+            width={400}
+            height={400}
+            alt="cat"
+          />
+      </div> }
       {cats.map((cat) => (
         <li
           key={cat.id}
@@ -74,6 +77,7 @@ const CatList = () => {
               <Image
                 onClick={() => {
                   handleLikeClick(cat.id);
+                  setLikedCats((prev) => [...prev, cat]);
                 }}
                 alt="heart"
                 width={48}
