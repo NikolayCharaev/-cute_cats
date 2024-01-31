@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import heart from '@/public/heart.svg';
 import heartActive from '@/public/heart-active.svg';
-import loadingCat from  '@/public/loader.gif'
+import loadingCat from '@/public/loader.gif';
 import { Cat } from '@/types/cat';
 
 const CatList = () => {
@@ -51,55 +51,57 @@ const CatList = () => {
   }, []);
 
   return (
-    <ul className="text-black flex flex-wrap w-full gap-[47px] mt-[52px]">
-      {loading && <div className='flex justify-center items-center w-screen h-screen'>
-        <Image
-            className="object-cover "
-            src={loadingCat}
-            width={400}
-            height={400}
-            alt="cat"
-          />
-      </div> }
-      {cats.map((cat) => (
-        <li
-          key={cat.id}
-          className="group object-cover hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem">
-          <Image
-            className="object-cover w-[225px] h-[225px]"
-            src={cat.url}
-            width={225}
-            height={225}
-            alt="cat"
-          />
-          <div className="opacity-0 group-hover:opacity-100 absolute bottom-0 right-0 p-2">
-            {cat.isLiked === false || cat.isLiked === undefined ? (
-              <Image
-                onClick={() => {
-                  handleLikeClick(cat.id);
-                  setLikedCats((prev) => [...prev, cat]);
-                }}
-                alt="heart"
-                width={48}
-                height={48}
-                src={heart}
-              />
-            ) : (
-              <Image
-                onClick={() => {
-                  handleLikeClick(cat.id);
-                  console.log(cat);
-                }}
-                alt="heart"
-                width={48}
-                height={48}
-                src={heartActive}
-              />
-            )}
+    <div>
+      <ul className="text-black flex flex-wrap w-full gap-[47px] mt-[52px] mb-10">
+        {loading && (
+          <div className="flex justify-center items-center w-screen h-screen">
+            <Image className="object-cover " src={loadingCat} width={400} height={400} alt="cat" />
           </div>
-        </li>
-      ))}
-    </ul>
+        )}
+        {cats.map((cat) => (
+          <li
+            key={cat.id}
+            className="group object-cover hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem">
+            <Image
+              className="object-cover w-[225px] h-[225px]"
+              src={cat.url}
+              width={225}
+              height={225}
+              alt="cat"
+            />
+            <div className="opacity-0 group-hover:opacity-100 absolute bottom-0 right-0 p-2">
+              {cat.isLiked === false || cat.isLiked === undefined ? (
+                <Image
+                  onClick={() => {
+                    handleLikeClick(cat.id);
+                    setLikedCats((prev) => [...prev, cat]);
+                  }}
+                  alt="heart"
+                  width={48}
+                  height={48}
+                  src={heart}
+                />
+              ) : (
+                <Image
+                  onClick={() => {
+                    handleLikeClick(cat.id);
+                    console.log(cat);
+                  }}
+                  alt="heart"
+                  width={48}
+                  height={48}
+                  src={heartActive}
+                />
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div className="text-center mt-10 text-black mb-10">
+        <p>... загружаем еще котиков ...</p>
+      </div>
+    </div>
   );
 };
 
