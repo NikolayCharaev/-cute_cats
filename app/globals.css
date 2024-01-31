@@ -11,12 +11,18 @@ body {
   font-weight: 400;
   line-height: 21px; /* 150% */
   letter-spacing: 0.25px;
-  /* color:  #FFF; */
+  color:  #FFF;
 
 }
 
 
 
 .container { 
-  width: 1318px;
+  width: 1314px;
+  /* padding: 0 62px; */
+}
+
+
+.active{
+  background-color: #1E88E5;
 }

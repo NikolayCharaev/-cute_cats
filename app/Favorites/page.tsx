@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Favorites = () => {
-  return <div>
+  return <div className='text-black'>
     Favorites
   </div>;
 };
