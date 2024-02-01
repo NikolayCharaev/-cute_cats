@@ -98,9 +98,7 @@ const CatList = () => {
         ))}
       </ul>
 
-      <div className="text-center mt-10 text-black mb-10">
-        <p>... загружаем еще котиков ...</p>
-      </div>
+  
     </div>
   );
 };
