@@ -5,6 +5,7 @@ import heart from '@/public/heart.svg';
 import heartActive from '@/public/heart-active.svg';
 import loadingCat from '@/public/loader.gif';
 import { Cat } from '@/types/cat';
+import Preloader from './Preloader';
 
 const CatList = () => {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -52,12 +53,8 @@ const CatList = () => {
 
   return (
     <div>
+      {loading && <Preloader />}
       <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[47px] mt-[52px] mb-10 ">
-        {loading && (
-          <div className="flex justify-center items-center w-full h-full">
-            <Image className="object-cover" src={loadingCat} width={400} height={400} alt="cat" />
-          </div>
-        )}
         {cats.map((cat) => (
           <li
             key={cat.id}
@@ -97,8 +94,6 @@ const CatList = () => {
           </li>
         ))}
       </ul>
-
-  
     </div>
   );
 };
