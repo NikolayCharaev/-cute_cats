@@ -5,18 +5,18 @@ import Link from 'next/link';
 const Header = () => {
   const pathname = usePathname();
   return (
-    <div className="bg-[#2196F3]  flex items-center">
+    <header className="bg-[#2196F3]  flex items-center">
       <div className="container mx-auto">
         <div className="flex ">
           <Link
-            className={` h-[64px] flex justify-center items-center  px-6 ${
-              pathname === '/' && 'active'
+            className={`h-[64px] flex justify-center items-center opacity-70  px-6 ${
+              pathname === '/' && 'active '
             } `}
             href="/">
             Все котики
           </Link>
           <Link
-            className={` h-[64px] flex justify-center items-center  px-6 ${
+            className={` h-[64px] flex justify-center items-center opacity-70  px-6 ${
               pathname === '/Favorites' && 'active'
             } `}
             href="/Favorites">
@@ -24,7 +24,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

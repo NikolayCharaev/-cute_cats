@@ -18,13 +18,21 @@ body {
 
 
 .container { 
-  width: 1314px;
-  /* padding: 0 62px; */
+
+  max-width: 1314px;
+  margin:  0 auto;
 }
 
 
 .active{
   background-color: #1E88E5;
+  opacity: 1;
 }
 
 
+@media screen and (max-width:640px) {
+  .container { 
+    padding:  0 20px;
+  }
+  
+}

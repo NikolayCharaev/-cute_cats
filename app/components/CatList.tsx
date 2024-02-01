@@ -52,18 +52,18 @@ const CatList = () => {
 
   return (
     <div>
-      <ul className="text-black flex flex-wrap gap-[47px] mt-[52px] mb-10">
+      <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[47px] mt-[52px] mb-10 ">
         {loading && (
-          <div className="flex justify-center items-center w-screen h-screen">
-            <Image className="object-cover " src={loadingCat} width={400} height={400} alt="cat" />
+          <div className="flex justify-center items-center w-full h-full">
+            <Image className="object-cover" src={loadingCat} width={400} height={400} alt="cat" />
           </div>
         )}
         {cats.map((cat) => (
           <li
             key={cat.id}
-            className="group  hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem ">
+            className="group hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem">
             <Image
-              className="object-cover w-[225px] h-[225px]"
+              className="object-cover w-full md:w-[225px] h-[225px]"
               src={cat.url}
               width={225}
               height={225}
