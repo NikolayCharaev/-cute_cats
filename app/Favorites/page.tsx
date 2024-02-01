@@ -23,7 +23,7 @@ const Favorites = () => {
         {allCats.map((cat) => (
           <li
             key={cat.id}
-            className="group object-cover hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem">
+            className="group object-cover hover:scale-110 transition cursor-pointer hover:shadow-xl relative">
             <Image
               className="object-cover w-[225px] h-[225px]"
               src={cat.url}
