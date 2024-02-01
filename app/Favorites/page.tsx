@@ -19,11 +19,11 @@ const Favorites = () => {
   };
   return (
     <div className="text-black">
-      <ul className="text-black flex flex-wrap w-full gap-[47px] mt-[52px]">
+      <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[47px] mt-[52px] mb-10 ">
         {allCats.map((cat) => (
           <li
             key={cat.id}
-            className="group object-cover hover:scale-110 transition cursor-pointer hover:shadow-xl relative">
+            className="group hover:scale-110 transition cursor-pointer hover:shadow-xl relative catItem">
             <Image
               className="object-cover w-[225px] h-[225px]"
               src={cat.url}
